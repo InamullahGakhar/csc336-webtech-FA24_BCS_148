@@ -1,0 +1,107 @@
+:root {
+  --gold: #c08a3e;
+  --brown: #7a4a17;
+  --tint: #fbf6ee;
+  --line: #ecdfc9;
+  --ink: #2e2217;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+
+body {
+  margin: 0;
+  font: 1.15rem/1.7 "Newsreader", Georgia, serif;
+  color: var(--ink);
+  background: white;
+}
+
+h1, h2, h3 { font-family: "Bricolage Grotesque", Arial, sans-serif; color: var(--brown); margin: 0 0 1rem; line-height: 1.1; }
+h1 { font-size: 4.5rem; }
+h2 { font-size: 2.4rem; margin-bottom: 2rem; }
+h3 { font-size: 1.3rem; margin-bottom: .25rem; }
+p { margin: 0 0 1rem; }
+a { color: var(--brown); }
+ul { margin: 0; padding: 0; list-style: none; }
+a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+.meta { font-style: italic; color: var(--brown); }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .5rem 2rem;
+  padding: 1rem 4rem;
+  background: white;
+  border-bottom: 1px solid var(--line);
+  font-family: "Bricolage Grotesque", Arial, sans-serif;
+}
+.nav__brand { font-weight: 800; text-decoration: none; }
+.nav__links { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; }
+.nav__links a { text-decoration: none; }
+.nav__links a:hover { text-decoration: underline; text-decoration-color: var(--gold); }
+
+.hero {
+  display: grid; grid-template-columns: 1.3fr 1fr; align-items: center; gap: 3rem;
+  max-width: 72rem; margin: 0 auto; padding: 5rem 4rem;
+}
+.hero h1 { margin-bottom: 2rem; }
+.hero__photo { margin: 0; justify-self: center; padding: 1rem; border: 2px solid var(--gold); border-radius: 999px 999px 1.5rem 1.5rem; }
+.hero__photo img { display: block; max-width: 100%; height: auto; border-radius: 999px 999px .75rem .75rem; }
+
+.button {
+  display: inline-block; padding: .8rem 1.6rem;
+  background: var(--brown); color: white; border: 2px solid var(--brown); border-radius: .4rem;
+  font-weight: 700; text-decoration: none;
+}
+.button:hover { background: white; color: var(--brown); }
+
+.section { padding: 5rem 4rem; }
+.section > * { max-width: 72rem; margin-left: auto; margin-right: auto; }
+.section--narrow > * { max-width: 44rem; }
+.section--tint { background: var(--tint); }
+.lead { font-size: 1.45rem; line-height: 1.5; color: var(--brown); }
+
+.projects { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.project { padding: 2rem; border: 1px solid var(--line); border-left: 6px solid var(--gold); border-radius: .4rem; }
+.project--wide { grid-column: 1 / -1; background: var(--brown); border-color: var(--brown); }
+.project--wide h3, .project--wide p { color: white; }
+
+.carousel { --visible: 3; --count: 5; overflow: hidden; }
+.carousel__track { display: flex; animation: slide calc(var(--count) * 4s) linear infinite; }
+.carousel:hover .carousel__track { animation-play-state: paused; }
+@keyframes slide { to { transform: translateX(calc(var(--count) * -100% / var(--visible))); } }
+
+.review { flex: 0 0 calc(100% / var(--visible)); padding: 0 .75rem; }
+.review article { height: 100%; padding: 1.75rem; background: white; border: 1px solid var(--line); border-radius: .4rem; box-shadow: 0 .4rem 0 var(--gold); }
+.review footer { font-weight: 700; color: var(--brown); }
+
+.tags { display: flex; flex-wrap: wrap; gap: .75rem; }
+.tags li { padding: .4rem 1.1rem; border: 2px solid var(--gold); border-radius: 999px; }
+
+.edu { width: 100%; border-collapse: collapse; background: white; }
+.edu th, .edu td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--line); }
+.edu th { background: var(--brown); color: white; }
+
+.contact { padding: 5rem 4rem; background: var(--gold); text-align: center; }
+.contact h2, .contact a { color: white; }
+.contact__links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem 2.5rem; font-weight: 700; }
+.site-footer { padding: 1.5rem; text-align: center; }
+.site-footer p { margin: 0; }
+
+@media (max-width: 60rem) {
+  .carousel { --visible: 2; }
+  .hero { grid-template-columns: 1fr; }
+}
+@media (max-width: 40rem) {
+  .carousel { --visible: 1; }
+  .projects { grid-template-columns: 1fr; }
+  .nav, .section, .contact, .hero { padding-left: 1.25rem; padding-right: 1.25rem; }
+  h1 { font-size: 3rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .carousel__track { animation: none; }
+}
