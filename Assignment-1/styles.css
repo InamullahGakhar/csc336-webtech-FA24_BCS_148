@@ -89,19 +89,3 @@ a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 .contact__links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem 2.5rem; font-weight: 700; }
 .site-footer { padding: 1.5rem; text-align: center; }
 .site-footer p { margin: 0; }
-
-@media (max-width: 60rem) {
-  .carousel { --visible: 2; }
-  .hero { grid-template-columns: 1fr; }
-}
-@media (max-width: 40rem) {
-  .carousel { --visible: 1; }
-  .projects { grid-template-columns: 1fr; }
-  .nav, .section, .contact, .hero { padding-left: 1.25rem; padding-right: 1.25rem; }
-  h1 { font-size: 3rem; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .carousel__track { animation: none; }
-}
