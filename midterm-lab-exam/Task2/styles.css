@@ -1,0 +1,158 @@
+:root {
+  --accent-color: hsl(336, 70%, 45%);
+}
+
+body {
+  color: #202a31;
+}
+
+.navbar-brand {
+  color: #146c43;
+}
+
+.nav-link {
+  color: #35433c;
+}
+
+.nav-link:hover,
+.navbar-brand:hover {
+  color: #198754;
+}
+
+.hero-banner {
+  background: linear-gradient(115deg, #14232b 0%, #193c38 55%, #1e5947 100%);
+}
+
+.hero-banner .text-uppercase {
+  color: #c6f05a;
+  letter-spacing: 0.12em;
+}
+
+.category-filters {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.filter-label {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.375rem;
+  background: #fff;
+  color: #202a31;
+  cursor: pointer;
+}
+
+.filter-label:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.filter-input:checked + .filter-label {
+  border-color: var(--accent-color);
+  background: var(--accent-color);
+  color: #fff;
+}
+
+.filter-input:focus-visible + .filter-label {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 3px;
+}
+
+.product-list:has(#filter-peripherals:checked) .product-grid > :not([data-category="peripherals"]),
+.product-list:has(#filter-hardware:checked) .product-grid > :not([data-category="hardware"]),
+.product-list:has(#filter-monitors:checked) .product-grid > :not([data-category="monitors"]) {
+  display: none;
+}
+
+.product-image {
+  height: 190px;
+  object-fit: contain;
+  padding: 1rem;
+  background: #f5f6f6;
+}
+
+.product-detail-image {
+  width: 100%;
+  max-height: 480px;
+  object-fit: contain;
+  background: #f5f6f6;
+}
+
+.quantity-input {
+  width: 5rem;
+}
+
+/* Task 2: below BP (648px), follow the HTML reading order. */
+.product-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "image"
+    "details"
+    "description";
+  gap: 1.5rem;
+}
+
+.product-photo {
+  grid-area: image;
+}
+
+.product-details {
+  grid-area: details;
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+  background: #fff;
+}
+
+.product-description {
+  grid-area: description;
+}
+
+.product-description h3 {
+  margin-top: 1.5rem;
+}
+
+/* Task 2: BP = 600 + 48 = 648px, including exactly 648px. */
+@media (min-width: 648px) {
+  .product-layout {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "image details"
+      "description description";
+  }
+
+  .product-details {
+    position: sticky;
+    top: 78px; /* (48 mod 40) + 70 */
+    align-self: start; /* Keep the box at its natural height. */
+    z-index: 1; /* Keep the white box above content as it scrolls. */
+  }
+}
+
+footer {
+  margin-top: 1rem;
+}
+
+@media (max-width: 420px) {
+  /* Task 2: keep the existing navigation on one line at 375px. */
+  .navbar-nav {
+    gap: 0 !important;
+  }
+
+  /* Task 2: enough specificity to override Bootstrap at phone widths. */
+  .navbar .navbar-nav .nav-link {
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .product-image {
+    height: 130px;
+    padding: 0.5rem;
+  }
+}
